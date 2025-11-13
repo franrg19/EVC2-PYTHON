@@ -23,8 +23,10 @@ El programa ofrece un **menú interactivo** que se repite hasta que el usuario d
 6. **Mostrar información de archivos y directorios**  
    Muestra nombre, ruta absoluta, tamaño en bytes, fecha de creación y última modificación.
 
-
-9. **Salir**  
+7. **Renombrar elemento**
+   Permite renombrar cualquier elemento
+   
+8. **Salir**  
    Termina la ejecución del programa.
 
 ## 🛡️ Seguridad y robustez
