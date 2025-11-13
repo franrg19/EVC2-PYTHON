@@ -34,7 +34,8 @@ def mostrar_menu ():
     print("4. Escribir texto en un archivo existente")
     print("5. Eliminar archivo o directorio")
     print("6. Mostrar informacion del archivo")
-    print("7. Salir")
+    print("7. Renombrar elemento")
+    print("8. Salir")
     
     
     
@@ -239,6 +240,37 @@ def mostrarInfo ():
         print(f"❌ {rojo} Error al obtener informacion {e}")
         
 
+#RENOMBRAR ELEMENTO
+def renombrarElemento ():
+    print(f" {tit_menu} ✍️  RENOMBRAR ELEMENTO ")
+    print("="*40)
+    
+    nombreActual=input("Escribe el nombre actual del elemento \n")
+    
+    if not nombreActual:
+        print(f"❌ {rojo} El nombre no puede estar vacio")
+        return
+    
+    try:
+        if not os.path.exists(nombreActual):
+            print(f"❌ {rojo} Error: {nombreActual} no existe.")
+            return
+        
+        nombreNuevo=input("Introduce el nuevo nombre que quieres asignar \n").strip ()
+        
+        if not nombreNuevo:
+            print(f"❌ {rojo} Error el nombre nuevo no puede estar vacio")
+        
+        if os.path.exists(nombreNuevo):
+            print(f"❌ Error: {nombreNuevo} ya existe.")
+            
+        os.rename(nombreActual,nombreNuevo)
+        print(f"✅ {verde} Renombrado correctamente {nombreActual} -> {nombreNuevo}")
+    except Exception as e:
+        print(f"❌ {rojo} Error al renombrar {e}")        
+        
+
+
 
 #FUNCION PRINCIPAL DEL PROGRAMA
 def main ():
@@ -251,9 +283,9 @@ def main ():
         mostrar_menu()
         
         try:
-            opcion=int(input("selecciona una opcion (7 para salir) \n"))
+            opcion=int(input("selecciona una opcion (8 para salir) \n"))
         except ValueError:
-            print(f"{rojo} Introduce un valor valido (7 para salir \n)")
+            print(f"{rojo} Introduce un valor valido (8 para salir \n)")
             continue
         
         match opcion:
@@ -281,7 +313,11 @@ def main ():
                 try:
                     mostrarInfo ()
                 except ValueError as e:print(e)
-            case 7:        
+            case 7:
+                try:
+                    renombrarElemento ()
+                except ValueError as e: print(e)
+            case 8:        
                 print(f"\n{Fore.GREEN}👋 ¡Hasta luego! Gracias por usar el Gestor de Archivos")
                 break
             
